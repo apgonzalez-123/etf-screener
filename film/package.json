@@ -7,7 +7,12 @@
     "score": "../.venv/bin/python scripts/score.py",
     "studio": "remotion studio src/index.ts",
     "render": "remotion render src/index.ts SeeThrough out/see-through-60s.mp4",
-    "render:nomusic": "remotion render src/index.ts SeeThrough out/see-through-60s-nomusic.mp4 --props=props-nomusic.json"
+    "render:nomusic": "remotion render src/index.ts SeeThrough out/see-through-60s-nomusic.mp4 --props=props-nomusic.json",
+    "capture:showcase": "node src/showcase/capture2.mjs && node src/showcase/capture-deep.mjs",
+    "score:showcase": "SCORE_END_BEAT=167 SCORE_SECONDS=121 SCORE_OUT=score-showcase.wav ../.venv/bin/python scripts/score.py",
+    "render:showcase": "remotion render src/showcase/index.ts Showcase out/showcase-v2.mp4",
+    "render:showcase:nomusic": "remotion render src/showcase/index.ts Showcase out/showcase-v2-nomusic.mp4 --props=props-nomusic.json",
+    "studio:showcase": "remotion studio src/showcase/index.ts"
   },
   "dependencies": {
     "@remotion/cli": "4.0.484",

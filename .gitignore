@@ -15,8 +15,7 @@ docs/PROMPT.md
 film/public/cap/
 film/public/audio/
 
-# internal showcase cut: kept local
-film/src/showcase/
+# internal labels for the showcase cut: kept local
+film/src/showcase/internal-props.json
 film/out/
-film/public/cap2/
 film/public/audio/

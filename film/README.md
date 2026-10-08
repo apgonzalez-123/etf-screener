@@ -37,3 +37,31 @@ npm run studio         # Remotion Studio for frame-by-frame review
 Sound effects from the video-shotcraft library (Mixkit licence; see `public/sfx/ATTRIBUTION.md`). Built with Remotion; check [Remotion's licence](https://github.com/remotion-dev/remotion/blob/main/LICENSE.md) for company use.
 
 Before any external use, the film needs compliance review of communications with the public, plus brand and rights sign-off.
+
+## v2: the showcase cut (1:57)
+
+`src/showcase/` is a longer, launch-style cut. Every UI shot plays inside one continuous app window, and key elements lift off the page as real high-res cutouts. In order:
+
+1. Launch reveal of Equities & ETFs and its place in the wider platform.
+2. Plain-English screening, with a provenance tooltip and filter chips.
+3. ⌘K look-through and overlap.
+4. "By the numbers", with real snapshot counts.
+5. Portfolio concentration.
+6. A walk through every section of a tear sheet.
+7. Movers, watchlists and the Client/Desk modes.
+8. A montage of further tools.
+
+```bash
+npm run capture:showcase        # needs the app on :5173
+npm run score:showcase
+npm run render:showcase         # out/showcase-v2.mp4
+npm run render:showcase:nomusic
+```
+
+Platform and module names are props. The defaults are neutral (`PUBLIC_LABELS` in `Showcase.tsx`). An internal cut with real platform names renders from a local, git-ignored props file:
+
+```bash
+npx remotion render src/showcase/index.ts Showcase out/showcase-internal.mp4 --props=src/showcase/internal-props.json
+```
+
+The hub's connections to other platform modules are the designed integration, not built features, and the film says so on screen.

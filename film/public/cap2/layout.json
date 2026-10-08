@@ -1,0 +1,89 @@
+{
+  "nl-input": {
+    "x": 244,
+    "y": 177,
+    "w": 1037,
+    "h": 40
+  },
+  "count": {
+    "x": 244,
+    "y": 315,
+    "w": 1328,
+    "h": 32
+  },
+  "prov": {
+    "text": "24.2%",
+    "source": "Computed from snapshot",
+    "asof": "2026-10-08T02:21:31+00:00",
+    "title": "Source: Computed from snapshot\nAs of: Oct 7, 10:21 PM EDT\nFormula: √252 × stdev(ln Cₜ/Cₜ₋₁), last 20 daily returns"
+  },
+  "provCell": {
+    "x": 245,
+    "y": 397,
+    "w": 2282,
+    "h": 34
+  },
+  "chips": {
+    "x": 244,
+    "y": 262,
+    "w": 1328,
+    "h": 33
+  },
+  "countBefore": "2,288",
+  "countAfter": "10",
+  "cmdk-box": {
+    "x": 480,
+    "y": 120,
+    "w": 640,
+    "h": 104
+  },
+  "hero": {
+    "x": 244,
+    "y": 318,
+    "w": 1328,
+    "h": 247
+  },
+  "overlap-card": {
+    "x": 244,
+    "y": 312,
+    "w": 1328,
+    "h": 160
+  },
+  "flag": {
+    "x": 598,
+    "y": 264,
+    "w": 974,
+    "h": 45
+  },
+  "exp-table": {
+    "x": 598,
+    "y": 382,
+    "w": 974,
+    "h": 1006
+  },
+  "wcard-0": {
+    "x": 244,
+    "y": 256,
+    "w": 1328,
+    "h": 156
+  },
+  "wcard-1": {
+    "x": 244,
+    "y": 423,
+    "w": 1328,
+    "h": 156
+  },
+  "wcard-2": {
+    "x": 244,
+    "y": 589,
+    "w": 1328,
+    "h": 156
+  },
+  "meta": {
+    "stocks": 3916,
+    "funds": 4190,
+    "bars": 4705,
+    "holdings_etfs": 31,
+    "issuers": 1872
+  }
+}
