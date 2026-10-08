@@ -92,7 +92,6 @@ const SECTION_NOTE: Record<string, string> = {
   Fundamentals: "Eight quarters of fundamentals",
   "Street view": "Ratings and price targets",
   Technicals: "Trend and the 52-week range",
-  Options: "A slot ready for the live options chain",
   "ETF ownership": "Every fund that holds it",
   Peers: "Peers, with 60-day correlation",
   Headlines: "The latest headlines",
@@ -462,7 +461,7 @@ export type Labels = {
   missingPiece: string; // hub headline
   tagline: string; // lockup line
   disclosureTail: string;
-  modules: [string, string, string, string]; // bonds, structured products, options, portfolios
+  modules: [string, string, string]; // bonds, structured products, portfolios
 };
 export const PUBLIC_LABELS: Labels = {
   platform: "Screening platform",
@@ -470,17 +469,17 @@ export const PUBLIC_LABELS: Labels = {
   missingPiece: "The missing piece of the platform.",
   tagline: "See what you own.",
   disclosureTail: "Integrations shown are planned. Prototype for internal review.",
-  modules: ["Bonds", "Structured products", "Options", "Portfolios"],
+  modules: ["Bonds", "Structured products", "Portfolios"],
 };
 const LabelCtx = createContext<Labels>(PUBLIC_LABELS);
 const useLabels = () => useContext(LabelCtx);
 
 // ---------------------------------------------------------------- platform hub
+// three modules on an arc above the core; the new module seats below it
 const LINKS = [
   { link: "Same shell, sign-on and entitlements", a: -150 },
   { link: "Cross-asset screens", a: -30 },
-  { link: "Open any name’s option chain", a: 30 },
-  { link: "Client holdings in, look-through out", a: 150 },
+  { link: "Client holdings in, look-through out", a: -90 },
 ];
 const R = 470;
 
@@ -499,7 +498,7 @@ const Hub: React.FC = () => {
   const seam = inOpen ? interpolate(g, [112, 116, 140], [0, 1, 0], clamp) : 0;
   const links = inClose ? ease(g, 40, 100) : 0;
   const cx = 960;
-  const cy = inOpen ? 520 : 500;
+  const cy = inOpen ? 570 : 600; // leave room above the arc for the headline
   return (
     <AbsoluteFill style={{ fontFamily: T.font, opacity: 1 - fadeOut }}>
       <svg width={1920} height={1080} style={{ position: "absolute", inset: 0 }}>
