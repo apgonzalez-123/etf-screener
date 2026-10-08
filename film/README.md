@@ -1,6 +1,6 @@
 # "See through" launch film
 
-A 60-second, 16:9 film for the Equities & ETF Screener. Rendered files: [film-v1 release](https://github.com/apgonzalez-123/etf-screener/releases/tag/film-v1). Every UI shot is a real capture of the app in `../web` against one frozen data snapshot, so every figure on screen is real and consistent across shots.
+A 60-second, 16:9 film for the Equities & ETF Screener. Rendered files: [film-v1 release](https://github.com/apgonzalez-123/etf-screener/releases/tag/film-v1). The 1:57 showcase is in the [film-v3 release](https://github.com/apgonzalez-123/etf-screener/releases/tag/film-v3). Every UI shot is a real capture of the app in `../web` against one frozen data snapshot, so every figure on screen is real and consistent across shots.
 
 ```bash
 npm ci
@@ -37,7 +37,7 @@ Sound effects from the video-shotcraft library (Mixkit licence; see `public/sfx/
 
 Before any external use, the film needs compliance review of communications with the public, plus brand and rights sign-off.
 
-## v2: the showcase cut (1:57)
+## v3: the showcase cut (1:57)
 
 `src/showcase/` is a longer, launch-style cut. Every UI shot plays inside one continuous app window, and key elements lift off the page as real high-res cutouts. In order:
 
@@ -57,10 +57,6 @@ npm run render:showcase         # out/showcase-v2.mp4
 npm run render:showcase:nomusic
 ```
 
-Platform and module names are props. The defaults are neutral (`PUBLIC_LABELS` in `Showcase.tsx`). An internal cut with real platform names renders from a local, git-ignored props file:
-
-```bash
-npx remotion render src/showcase/index.ts Showcase out/showcase-internal.mp4 --props=src/showcase/internal-props.json
-```
+Platform and module names (Asset Screener, Bond Screener, Structured Notes, Portfolio Screen) are props with those defaults (`PUBLIC_LABELS` in `Showcase.tsx`), so a neutral version can be rendered by passing `--props` with other labels. Options are out of scope and do not appear.
 
 The hub's connections to other platform modules are the designed integration, not built features, and the film says so on screen.

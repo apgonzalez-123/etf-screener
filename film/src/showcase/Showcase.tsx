@@ -1,5 +1,5 @@
-// Showcase cut. Platform and module names are props: the defaults are neutral, and an
-// internal cut is rendered locally with --props=src/showcase/internal-props.json (git-ignored).
+// Showcase cut for the Asset Screener. Platform and module names are props (see Labels), so a
+// neutral version can be rendered with --props when needed.
 import { createContext, useContext, useEffect, useState } from "react";
 import { AbsoluteFill, Audio, Img, Sequence, continueRender, delayRender, interpolate, staticFile, useCurrentFrame } from "remotion";
 import { GlassCard } from "../scenes/GlassCard";
@@ -454,7 +454,7 @@ const Copy: React.FC = () => {
   );
 };
 
-// ---------------------------------------------------------------- labels (neutral by default)
+// ---------------------------------------------------------------- labels
 export type Labels = {
   platform: string; // hub core, e.g. the screening platform's name
   forPlatform: string; // line under the launch wordmark
@@ -464,12 +464,12 @@ export type Labels = {
   modules: [string, string, string]; // bonds, structured products, portfolios
 };
 export const PUBLIC_LABELS: Labels = {
-  platform: "Screening platform",
-  forPlatform: "for the screening platform",
-  missingPiece: "The missing piece of the platform.",
-  tagline: "See what you own.",
-  disclosureTail: "Integrations shown are planned. Prototype for internal review.",
-  modules: ["Bonds", "Structured products", "Portfolios"],
+  platform: "Asset Screener",
+  forPlatform: "for the Asset Screener",
+  missingPiece: "The missing piece of the Asset Screener.",
+  tagline: "See what you own. Part of the Asset Screener.",
+  disclosureTail: "Integrations shown are planned. Internal use only.",
+  modules: ["Bond Screener", "Structured Notes", "Portfolio Screen"],
 };
 const LabelCtx = createContext<Labels>(PUBLIC_LABELS);
 const useLabels = () => useContext(LabelCtx);
