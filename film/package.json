@@ -1,0 +1,23 @@
+{
+  "name": "safra-see-through-film",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "capture": "node scripts/capture.mjs",
+    "score": "../.venv/bin/python scripts/score.py",
+    "studio": "remotion studio src/index.ts",
+    "render": "remotion render src/index.ts SeeThrough out/see-through-60s.mp4",
+    "render:nomusic": "remotion render src/index.ts SeeThrough out/see-through-60s-nomusic.mp4 --props=props-nomusic.json"
+  },
+  "dependencies": {
+    "@remotion/cli": "4.0.484",
+    "react": "19.2.7",
+    "react-dom": "19.2.7",
+    "remotion": "4.0.484"
+  },
+  "devDependencies": {
+    "@types/react": "19.2.17",
+    "typescript": "6.0.3",
+    "playwright": "1.64.0"
+  }
+}

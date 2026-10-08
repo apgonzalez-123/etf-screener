@@ -1,0 +1,16 @@
+.venv/
+__pycache__/
+*.pyc
+node_modules/
+web/dist/
+web/public/data/
+web/test-results/
+web/playwright-report/
+film/out/
+film/node_modules/
+film/public/captures/
+.DS_Store
+# internal build brief: kept local, never published
+docs/PROMPT.md
+film/public/cap/
+film/public/audio/
