@@ -43,7 +43,7 @@ export function Data() {
           </div>
           <div className="panel stack">
             <h3>Known gaps in this build</h3>
-            <p>No options feed: ATM IV, skew, term structure, implied moves and the IV/RV tab are blank. No EPS beat history. Holdings cover State Street SPDR funds only. Opaque fund codes the mapping table does not know render as “—”. Values that fail range checks (for example an expense ratio above 5%) are withheld and flagged.</p>
+            <p>No EPS beat history. Holdings cover State Street SPDR funds only. Opaque fund codes the mapping table does not know render as “—”. Values that fail range checks (for example an expense ratio above 5%) are withheld and flagged.</p>
           </div>
           <div className="panel">
             <h3>Attribution</h3>

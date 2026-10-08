@@ -28,7 +28,6 @@ npm run studio         # Remotion Studio for frame-by-frame review
 - **Supers instead of voiceover.** No licensed or consented voice was available, and a synthetic voice would need both. The VO lines are set as on-screen supers (≥ 56 px effective height).
 - **No generative video.** No video-generation service was available. The 4–10 s and 42–52 s atmosphere beats are built in Remotion from the brand tokens and real captures instead of city footage.
 - **No "AI approved" moment.** The AI layer is off in this build, so showing an AI-curated, banker-approved card would be a fake UI. The 30–42 s beat shows the real rules-generated watchlists instead.
-- **Realized vol instead of IV/RV.** There is no options feed, so the column that lights up is realized vol.
 - **Music.** `scripts/score.py` synthesizes an original 90 BPM piano + sub pulse + strings cue, so no licence is needed. Replace it with a licensed or commissioned track before release; the no-music render is there for that.
 - **One cut only.** The 30 s, 15 s, 6 s, 1:1, 9:16, long-form and PT-BR versions are not made yet.
 

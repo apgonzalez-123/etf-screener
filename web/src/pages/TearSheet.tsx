@@ -122,17 +122,13 @@ function StockSheet({ s, asof }: { s: Stock; asof: string }) {
             ["EV / Sales", n(s.ev_sales, (v) => times(v))],
             ["Beta 1y", n(s.beta, (v) => num(v))],
             ["Realized vol 20d", n(s.rv20, (v) => pct(v, 1), "√252 × stdev(ln Cₜ/Cₜ₋₁), 20 returns", "Computed")],
-            ["ATM implied vol", <span className="muted" title="Options provider not connected in this build">—</span>],
             ["Next earnings", <span title={`Source: ${TV}`}>{date(s.next_earnings)}{d2e !== null && d2e >= 0 ? <span className="muted small"> in {d2e}d</span> : null}</span>],
           ]}
         />
+        <Fundamentals detail={detail.data} asof={asof} s={s} />
         <div className="grid-2">
-          <Fundamentals detail={detail.data} asof={asof} s={s} />
           <Street s={s} asof={asof} />
-        </div>
-        <div className="grid-2">
           <Technicals s={s} asof={asof} />
-          <Options />
         </div>
         <div className="grid-2">
           <EtfOwnership ticker={s.ticker} />
@@ -264,19 +260,6 @@ function Technicals({ s, asof }: { s: Stock; asof: string }) {
           ["Trend 1W / 1M / 3M", <span>{[s.perf_1w, s.perf_1m, s.perf_3m].map((x, i) => <span key={i} className={dir(x)}>{arrow(x)}</span>)}</span>],
         ]}
       />
-    </div>
-  );
-}
-
-function Options() {
-  return (
-    <div className="panel">
-      <div className="panel-head"><h3>Options</h3></div>
-      <p className="muted">
-        ATM implied vol, 25-delta skew, term structure and the implied earnings move come from the live options chain
-        (get_option_chain). This static build has no options feed, so those figures are left blank rather than estimated.
-      </p>
-      <p className="small muted" style={{ marginTop: 10 }}>Unusual options activity also needs contract volume and open interest, which the current provider does not carry.</p>
     </div>
   );
 }

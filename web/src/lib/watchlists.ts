@@ -50,7 +50,7 @@ export function buildWatchlists(stocks: Stock[], index: HoldingsIndex | null, no
     title: "Large caps reporting this week",
     rule: "Market cap ≥ $10B, earnings within 7 days",
     rationale: earn.length
-      ? `${earn.length} large caps report in the next week. Implied-move ranking switches on with the options feed.`
+      ? `${earn.length} large caps report in the next week.`
       : "No large caps report in the next seven days.",
     names: earn.map((s) => ({ ticker: s.ticker, why: `reports in ${daysUntil(s.next_earnings, now)}d, RV20 ${pct(s.rv20, 0)}` })),
     status: "rules",

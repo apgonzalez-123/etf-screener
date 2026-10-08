@@ -9,13 +9,12 @@ import { DEFAULT_GATES, passFundGates, passStockGates } from "../lib/filters";
 import { daysUntil, money, pct, signedPct, times } from "../lib/format";
 import type { Fund, Stock } from "../lib/types";
 
-type Tab = "movers" | "volume" | "rv" | "ivrv" | "earnings" | "breakouts" | "leveraged";
+type Tab = "movers" | "volume" | "rv" | "earnings" | "breakouts" | "leveraged";
 
 const TABS: [Tab, string, string][] = [
   ["movers", "Top movers", "Largest moves today, up and down, after universe gates."],
   ["volume", "Unusual volume", "Relative volume at least 2× the 10-day average."],
   ["rv", "High realized vol", "20-day realized volatility at least 60%, annualized."],
-  ["ivrv", "IV rich / cheap", "Implied vs realized volatility."],
   ["earnings", "Earnings this week", "Reporting within 5 sessions."],
   ["breakouts", "Breakouts", "Within 1% of a 52-week high or low on relative volume ≥ 1.5."],
   ["leveraged", "Leveraged ETFs", "Kept apart from every other tab. Daily reset."],
@@ -82,17 +81,8 @@ export function Movers() {
       )}
       {tab === "volume" && <Cards rows={lists.volume} asof={asof} mode={mode} />}
       {tab === "rv" && <Cards rows={lists.rv} asof={asof} mode={mode} />}
-      {tab === "earnings" && <Cards rows={lists.earnings} asof={asof} mode={mode} note="Sorted by market cap. Sorting by implied move needs the options feed." />}
+      {tab === "earnings" && <Cards rows={lists.earnings} asof={asof} mode={mode} note="Sorted by market cap." />}
       {tab === "breakouts" && <Cards rows={lists.breakouts} asof={asof} mode={mode} />}
-      {tab === "ivrv" && (
-        <div className="panel empty">
-          <h3>Needs an options feed</h3>
-          <p style={{ maxWidth: "60ch" }}>
-            IV ÷ realized vol is computed from the ATM implied vol of each underlying’s option chain. This build has no options provider, so
-            the tab stays empty rather than showing estimates. The realized-vol half is already on every card.
-          </p>
-        </div>
-      )}
       {tab === "leveraged" && <FundCards rows={lists.lev} asof={u.data.funds.as_of} />}
       <Disclosure />
     </div>
@@ -123,7 +113,6 @@ function Cards({ rows, asof, mode, note }: { rows: Stock[]; asof: string; mode: 
                 <div className="meta">
                   <span>Rel vol <Num value={s.rel_volume} fmt={(v) => times(v, 1)} source={TV} asof={asof} /></span>
                   <span>RV20 <Num value={s.rv20} fmt={(v) => pct(v, 0)} source="Computed" asof={asof} formula="√252 × stdev(ln returns), 20d" /></span>
-                  <span title="Needs options feed">IV/RV —</span>
                   <span>Earnings {d !== null && d >= 0 ? `in ${d}d` : "—"}</span>
                 </div>
               )}
