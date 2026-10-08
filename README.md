@@ -2,6 +2,8 @@
 
 A working prototype of an Equities & ETF screening module: screen US-listed stocks and ETFs, see the single-name exposure hidden inside ETFs, read a one-page tear sheet for any name, and track the names moving the tape. Every number shows its source and as-of time on hover, and a missing value is shown as "—", never estimated.
 
+**Live site:** https://apgonzalez-123.github.io/etf-screener/ · **Launch film:** [download from the film-v1 release](https://github.com/apgonzalez-123/etf-screener/releases/tag/film-v1)
+
 > Prototype for internal review. Not approved for client use. See [Compliance](#compliance) before sharing it outside the team.
 
 ## What's in it

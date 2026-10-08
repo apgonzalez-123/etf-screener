@@ -1,6 +1,6 @@
 # "See through" launch film
 
-A 60-second, 16:9 film for the Equities & ETF Screener. Every UI shot is a real capture of the app in `../web` against one frozen data snapshot, so every figure on screen is real and consistent across shots.
+A 60-second, 16:9 film for the Equities & ETF Screener. Rendered files: [film-v1 release](https://github.com/apgonzalez-123/etf-screener/releases/tag/film-v1). Every UI shot is a real capture of the app in `../web` against one frozen data snapshot, so every figure on screen is real and consistent across shots.
 
 ```bash
 npm ci

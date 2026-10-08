@@ -381,7 +381,7 @@ function OverlapTool({ idx }: { idx: HoldingsIndex }) {
         <span className="muted">versus</span>
         <select className="input" value={b} onChange={(e) => setB(e.target.value)} aria-label="Second ETF">{opts.map((o) => <option key={o}>{o}</option>)}</select>
       </div>
-      {!r.data ? (
+      {!r.data || r.data.ha.etf !== a || r.data.hb.etf !== b ? (
         <Skel h={200} />
       ) : (
         <>

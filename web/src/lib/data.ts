@@ -36,7 +36,8 @@ export function useAsync<T>(fn: () => Promise<T>, deps: unknown[]): Async<T> {
   const [state, set] = useState<Async<T>>({ data: null, error: null, loading: true });
   useEffect(() => {
     let live = true;
-    set((s) => ({ ...s, loading: true, error: null }));
+    // Clear on every input change: never show one symbol's data under another's name.
+    set({ data: null, loading: true, error: null });
     fn()
       .then((data) => live && set({ data, error: null, loading: false }))
       .catch((e: Error) => live && set({ data: null, error: e.message, loading: false }));

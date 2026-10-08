@@ -62,7 +62,7 @@ test("8 · overlap of two S&P 500 trackers ≥ 98%", async ({ page }) => {
   await page.goto("./#/look-through?tab=overlap");
   await page.getByLabel("First ETF").selectOption("SPY");
   await page.getByLabel("Second ETF").selectOption("SPYM");
-  await expect(page.getByTestId("overlap-figure")).toContainText("%");
+  await expect(page.getByTestId("overlap-figure")).toContainText("between SPY and SPYM");
   const v = parseFloat((await page.getByTestId("overlap-figure").locator(".num").textContent())!.replace("%", ""));
   expect(v).toBeGreaterThanOrEqual(98);
 });
