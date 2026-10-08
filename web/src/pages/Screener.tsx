@@ -107,7 +107,14 @@ export function Screener() {
   const colKey = `${st.u}-${mode}`;
   const colList = cols[colKey] ?? (isStock ? (mode === "client" ? CLIENT_STOCK_COLS : DESK_STOCK_COLS) : mode === "client" ? CLIENT_FUND_COLS : DESK_FUND_COLS);
   const visible = useMemo(() => colList.map((k) => fmap[k]).filter(Boolean), [colList, fmap]);
-  const gridFields = useMemo(() => visible.map((f) => (mode === "client" && f.plain ? { ...f, label: f.plain } : f)), [visible, mode]);
+  // Client mode sets 16px type and 52px rows; widen columns to match so values never truncate.
+  const gridFields = useMemo(
+    () =>
+      visible.map((f) =>
+        mode === "client" ? { ...f, label: f.plain ?? f.label, width: Math.round((f.width ?? 90) * (f.key === "name" ? 1.25 : 1.4)) } : f,
+      ),
+    [visible, mode],
+  );
   const gates = effectiveGates(mode, st.gates);
 
   const rows = useMemo(() => {
