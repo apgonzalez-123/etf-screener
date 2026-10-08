@@ -7,6 +7,7 @@ written as beatF(n) = 20 * n and lands on the grid by construction.
 """
 from __future__ import annotations
 
+import os
 import wave
 from pathlib import Path
 
@@ -15,7 +16,10 @@ import numpy as np
 SR = 48_000
 BPM = 90
 BEAT = 60 / BPM
-DUR = 61.0
+# Length and the final-chord beat are parameters so other cuts can reuse the cue:
+#   SCORE_END_BEAT=129 SCORE_SECONDS=93 SCORE_OUT=score-showcase.wav python scripts/score.py
+END_BEAT = float(os.environ.get("SCORE_END_BEAT", 79))
+DUR = float(os.environ.get("SCORE_SECONDS", 61.0))
 rng = np.random.default_rng(7)  # deterministic
 
 t_all = np.arange(int(SR * DUR)) / SR
@@ -95,12 +99,13 @@ add(piano(note_hz("A2"), 6.0, 0.5), 0.15, 0.25)
 CHORDS = [("A2", "C4", "E4", "A4"), ("F2", "A3", "C4", "F4"), ("C3", "E4", "G4", "C5"), ("G2", "B3", "D4", "G4")]
 
 # --- 4–52 s: pulse on every beat -----------------------------------------------
-for k in range(6, 78):
-    g = 0.42 if k < 63 else 0.42 * max(0.0, 1 - (k - 63) / 15)  # thins out through the atmosphere beat
+THIN = int(END_BEAT) - 16  # pulse thins out over the last four bars before the final chord
+for k in range(6, int(END_BEAT) - 1):
+    g = 0.42 if k < THIN else 0.42 * max(0.0, 1 - (k - THIN) / 15)
     add(sub_pulse(), b(k), g)
 
 # --- piano chords every two bars from 4 s; arpeggio eighths from 10 s ---------
-for bar, start in enumerate(range(6, 78, 8)):
+for bar, start in enumerate(range(6, int(END_BEAT) - 1, 8)):
     root, *upper = CHORDS[bar % 4]
     add(piano(note_hz(root), 5.0, 0.8), b(start), 0.32, -0.15)
     for i, nme in enumerate(upper):
@@ -112,16 +117,16 @@ for bar, start in enumerate(range(6, 78, 8)):
             add(piano(hz, 1.2, 0.35), b(start) + e * BEAT / 2, 0.07, 0.4 if e % 2 else -0.4)
 
 # --- 20–42 s: strings swell; 42–52 s hold one pad ------------------------------
-for bar, start in enumerate(range(30, 63, 8)):
+for bar, start in enumerate(range(30, THIN, 8)):
     root, *upper = CHORDS[(bar + 3) % 4]
     for i, nme in enumerate((root, *upper[:2])):
         hz = note_hz(nme) * (2 if i == 0 else 1)
         add(strings(hz, b(8) + 1.0), b(start), 0.05, -0.5 + 0.5 * i)
-add(strings(note_hz("A3"), 13.0, 3.0), b(63), 0.06, -0.3)
-add(strings(note_hz("E4"), 13.0, 3.0), b(63), 0.05, 0.3)
+add(strings(note_hz("A3"), 13.0, 3.0), b(THIN), 0.06, -0.3)
+add(strings(note_hz("E4"), 13.0, 3.0), b(THIN), 0.05, 0.3)
 
 # --- 52.7 s: final chord, then let it ring -------------------------------------
-END = b(79)
+END = b(END_BEAT)
 for i, nme in enumerate(("A1", "A2", "E3", "C4", "E4", "A4")):
     add(piano(note_hz(nme), 8.0, 0.9), END + 0.01 * i, 0.3 if i < 2 else 0.18, -0.3 + 0.12 * i)
 add(strings(note_hz("A3"), 7.5, 0.6), END, 0.05)
@@ -137,7 +142,7 @@ mix /= np.max(np.abs(mix)) / 10 ** (-1 / 20)
 rms = np.sqrt(np.mean(mix[int(5 * SR):int(50 * SR)] ** 2))
 print(f"peak -1.0 dBFS, body RMS {20 * np.log10(rms):.1f} dBFS")
 
-out = Path(__file__).resolve().parent.parent / "public" / "audio" / "score.wav"
+out = Path(__file__).resolve().parent.parent / "public" / "audio" / os.environ.get("SCORE_OUT", "score.wav")
 out.parent.mkdir(parents=True, exist_ok=True)
 with wave.open(str(out), "wb") as w:
     w.setnchannels(2)

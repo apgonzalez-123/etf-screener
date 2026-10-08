@@ -14,3 +14,9 @@ film/public/captures/
 docs/PROMPT.md
 film/public/cap/
 film/public/audio/
+
+# showcase cut: mentions internal Asset Screener modules, kept local
+film/src/showcase/
+film/out/
+film/public/cap2/
+film/public/audio/
